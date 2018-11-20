@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package boxordering;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,14 +12,14 @@ import java.math.BigDecimal;
  * @author up851097
  */
 public class ColourBox extends BasicBox {
-    
+
     protected int colourType;
 
     public ColourBox(double width, double length, double height, int cardboardGrade, boolean sealable, int colourType) {
         super(width, length, height, cardboardGrade, sealable);
         this.colourType = colourType;
     }
-    
+
     protected BigDecimal getCostOfColours() {
         switch (colourType) {
             case 1:
@@ -28,9 +29,9 @@ public class ColourBox extends BasicBox {
         }
         throw new RuntimeException("Invalid colour type.");
     }
-    
-    public BigDecimal calculatePrice() {
-        return super.calculatePrice().multiply(getCostOfColours());
+
+    protected BigDecimal getPriceMultiplier() {
+        return super.getPriceMultiplier().add(getCostOfColours());
     }
-    
+
 }

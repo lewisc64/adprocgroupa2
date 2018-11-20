@@ -5,6 +5,8 @@
  */
 package boxordering;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author up851097
@@ -16,9 +18,10 @@ public class BoxOrdering {
      */
     public static void main(String[] args) {
         
-        Box box = new ColourBox(4, 6, 2, 2, false, 2);
+        Box box = new ReinforcedBox(4, 6, 2, 2, true, 2, false);
         System.out.println(box.calculatePrice());
         
     }
     
+
 }

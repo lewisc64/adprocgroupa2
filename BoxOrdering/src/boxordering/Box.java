@@ -34,9 +34,20 @@ public abstract class Box {
         }
         throw new RuntimeException("Invalid cardboard grade.");
     }
-        
+    
     public BigDecimal calculatePrice() {
-        return new BigDecimal(0);
+        BigDecimal result = calculateBasePrice().multiply(getPriceMultiplier());
+        return result;
+    }
+        
+    public BigDecimal calculateBasePrice() {
+        BigDecimal surfaceArea = new BigDecimal(length * height * 2 + width * height * 2 + length * width * 2);
+        BigDecimal price = surfaceArea.multiply(getCostOfCardboard());
+        return price;
+    }
+    
+    protected BigDecimal getPriceMultiplier() {
+        return new BigDecimal(sealable ? 1.1 : 0);
     }
     
 }

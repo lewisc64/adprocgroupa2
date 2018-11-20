@@ -20,14 +20,4 @@ public class BasicBox extends Box {
         this.sealable = sealable;
     }
     
-    public BigDecimal calculatePrice() {
-        BigDecimal surfaceArea = new BigDecimal(length * height * 2 + width * height * 2 + length * width * 2);
-        BigDecimal price = super.calculatePrice().add(surfaceArea.multiply(getCostOfCardboard()));
-        if (sealable) {
-            return price.multiply(new BigDecimal(1.1));
-        } else {
-            return price;
-        }
-    }
-    
 }
