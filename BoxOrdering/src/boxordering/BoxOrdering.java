@@ -5,8 +5,6 @@
  */
 package boxordering;
 
-import java.math.BigDecimal;
-
 /**
  *
  * @author up851097
