@@ -16,11 +16,8 @@ public class BoxOrdering {
      */
     public static void main(String[] args) {
         
-        Box box = new ReinforcedBox(4, 6, 2, 2, true, 2, false);
-        System.out.println(box.calculatePrice());
-        
-        BasicBox box2 = new BasicBox(1, 1, 1, 5, true);
-        System.out.println(box2.calculatePrice());
+        MainMenu window = new MainMenu();
+        window.setVisible(true);
         
     }
     
