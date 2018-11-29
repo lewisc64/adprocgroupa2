@@ -1,26 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package boxordering;
 
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author up851097
- */
-public abstract class Form extends JFrame {
+public abstract class Form extends JDialog {
     
-    protected boolean yield = false;
+    protected boolean valid = false;
+    
+    public Form() {
+        setModalityType(ModalityType.APPLICATION_MODAL);
+    }
     
     public abstract Object getInfo();
     
-    protected void alert(String message) {
-        JOptionPane.showMessageDialog(null, message, "Unable to continue.", JOptionPane.WARNING_MESSAGE);
+    public boolean isValid() {
+        return valid;
+    }
+    
+    protected void showWarning(String message) {
+        JOptionPane.showMessageDialog(null, message, "Unable to Continue", JOptionPane.WARNING_MESSAGE);
+    }
+    
+    protected void showInfo(String message) {
+        JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.INFORMATION_MESSAGE);
     }
     
     protected void close() {

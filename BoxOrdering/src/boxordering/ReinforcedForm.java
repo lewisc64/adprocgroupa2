@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package boxordering;
 
-/**
- *
- * @author up851097
- */
 public class ReinforcedForm extends Form {
 
-    /**
-     * Creates new form ReinforcedForm
-     */
     public ReinforcedForm() {
+        super();
         initComponents();
     }
 
@@ -36,11 +26,9 @@ public class ReinforcedForm extends Form {
         notReinforced = new javax.swing.JRadioButton();
         reinforced = new javax.swing.JRadioButton();
         reinforcedWithCorners = new javax.swing.JRadioButton();
-        reinforcedButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Reinforced Form");
 
@@ -58,7 +46,12 @@ public class ReinforcedForm extends Form {
         buttonGroup1.add(reinforcedWithCorners);
         reinforcedWithCorners.setText("Reinforced With Corners");
 
-        reinforcedButton.setText("Next");
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +71,7 @@ public class ReinforcedForm extends Form {
                 .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(reinforcedButton)
+                .addComponent(nextButton)
                 .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
@@ -93,7 +86,7 @@ public class ReinforcedForm extends Form {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(reinforcedWithCorners)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(reinforcedButton)
+                .addComponent(nextButton)
                 .addGap(28, 28, 28))
         );
 
@@ -104,46 +97,13 @@ public class ReinforcedForm extends Form {
         // TODO add your handling code here:
     }//GEN-LAST:event_notReinforcedActionPerformed
 
-    public Object getInfo() {
-        if (yield) {
-            return true; // an object that contains results of ui
-        }
-        return null;
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReinforcedForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReinforcedForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReinforcedForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReinforcedForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        valid = true;
+        close();
+    }//GEN-LAST:event_nextButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ReinforcedForm().setVisible(true);
-            }
-        });
+    public Object getInfo() {
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,9 +113,9 @@ public class ReinforcedForm extends Form {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton nextButton;
     private javax.swing.JRadioButton notReinforced;
     private javax.swing.JRadioButton reinforced;
-    private javax.swing.JButton reinforcedButton;
     private javax.swing.JRadioButton reinforcedWithCorners;
     // End of variables declaration//GEN-END:variables
 }

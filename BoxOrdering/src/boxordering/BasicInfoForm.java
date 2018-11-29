@@ -1,20 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package boxordering;
 
-/**
- *
- * @author up851097
- */
+class BasicInfoFormResult {
+    
+    int grade;
+    double width, height, length;
+    boolean sealable;
+    
+    public BasicInfoFormResult(int grade, double width, double height, double length, boolean sealable) {
+        this.grade = grade;
+        //WIP
+    }
+
+}
+
 public class BasicInfoForm extends Form {
 
-    /**
-     * Creates new form BasicInfoForm
-     */
     public BasicInfoForm() {
+        super();
         initComponents();
     }
 
@@ -32,14 +35,14 @@ public class BasicInfoForm extends Form {
         jLabel2 = new javax.swing.JLabel();
         height = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        width = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         length = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         sealable = new javax.swing.JCheckBox();
         next = new javax.swing.JButton();
+        width = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Basic Ordering Form");
 
@@ -56,13 +59,6 @@ public class BasicInfoForm extends Form {
 
         jLabel3.setText("Height");
 
-        width.setColumns(5);
-        width.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                widthActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Width");
 
         length.setColumns(5);
@@ -75,6 +71,13 @@ public class BasicInfoForm extends Form {
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
+            }
+        });
+
+        width.setColumns(5);
+        width.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                widthActionPerformed(evt);
             }
         });
 
@@ -127,8 +130,8 @@ public class BasicInfoForm extends Form {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(width, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(length, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,14 +159,15 @@ public class BasicInfoForm extends Form {
             sideLength = Double.parseDouble(length.getText());
             sideHeight = Double.parseDouble(height.getText());
         } catch(NumberFormatException e) {
-            alert("Sides must be a valid number.");
+            showWarning("Sides must be a valid number.");
             return;
         }
         if (sideWidth <= 0 || sideHeight <= 0 || sideLength <= 0) {
-            alert("Sides must be non-zero and positive.");
+            showWarning("Sides must be non-zero and positive.");
             return;
         }
-        yield = true;
+        valid = true;
+        close();
     }//GEN-LAST:event_nextActionPerformed
 
     private void widthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_widthActionPerformed
@@ -171,45 +175,7 @@ public class BasicInfoForm extends Form {
     }//GEN-LAST:event_widthActionPerformed
 
     public Object getInfo() {
-        if (yield) {
-            return true; // an object that contains results of ui
-        }
         return null;
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BasicInfoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BasicInfoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BasicInfoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BasicInfoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BasicInfoForm().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
