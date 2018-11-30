@@ -1,6 +1,7 @@
 package boxordering;
 
 import java.awt.Dialog.ModalityType;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 public class MainMenu extends javax.swing.JFrame {
@@ -8,6 +9,8 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
     }
+    public BigDecimal orderPrice = null;
+    public BigDecimal totalPrice = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -21,6 +24,8 @@ public class MainMenu extends javax.swing.JFrame {
         addbox = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        ordersLabel = new javax.swing.JLabel();
+        totalCostLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,6 +40,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButton1.setText("Clear Box");
 
+        ordersLabel.setText("Orders Made: 0");
+
+        totalCostLabel.setText("Total Cost: £0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -48,7 +57,13 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(136, 136, 136)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1)
-                            .addComponent(addbox))))
+                            .addComponent(addbox)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ordersLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(totalCostLabel)))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -60,7 +75,11 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(addbox)
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(ordersLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalCostLabel)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,6 +184,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         // show main form, updated with the box order they just placed.
         setVisible(true);
+        orderPrice = box.calculatePrice();
+        totalPrice = totalPrice.add(orderPrice);
+        totalCostLabel.setText("Total Price: £" + totalPrice.toString());
+        
     }//GEN-LAST:event_addboxActionPerformed
 
 
@@ -172,5 +195,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton addbox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel ordersLabel;
+    private javax.swing.JLabel totalCostLabel;
     // End of variables declaration//GEN-END:variables
 }
