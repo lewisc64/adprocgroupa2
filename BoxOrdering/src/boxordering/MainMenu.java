@@ -42,7 +42,12 @@ public int orders = 0;
 
         jLabel1.setText("Flex Box Ordering System");
 
-        jButton1.setText("Clear Box");
+        jButton1.setText("Reset Orders");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         ordersLabel.setText("Orders Made: 0");
 
@@ -104,7 +109,7 @@ public int orders = 0;
                 "Cancellation",
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void update() {
         int boxCount = 0;
         BigDecimal totalPrice = new BigDecimal(0);
@@ -112,7 +117,6 @@ public int orders = 0;
             boxCount = boxCount + 1;
             totalPrice = totalPrice.add(box.calculatePrice());
         }
-        orders = orders + 1;
         boxCountLabel.setText("Boxes Ordered: " + boxCount);
         totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2,RoundingMode.HALF_UP).toString());
         ordersLabel.setText("Orders made: " + orders);
@@ -226,10 +230,18 @@ public int orders = 0;
         /*        orderPrice = box.calculatePrice();
         totalPrice = totalPrice.add(orderPrice);
         totalCostLabel.setText("Total Price: £" + totalPrice.toString()); */
+       orders = orders + 1;
         update();
 
 
     }//GEN-LAST:event_addboxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        orders = 0;
+        boxes.clear();
+        update();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
