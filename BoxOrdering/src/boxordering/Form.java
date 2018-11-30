@@ -11,6 +11,7 @@ public abstract class Form extends JDialog {
     
     public Form() {
         setModalityType(ModalityType.APPLICATION_MODAL);
+        setResizable(false);
     }
     
     public abstract Object getInfo();

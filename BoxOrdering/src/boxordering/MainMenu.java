@@ -1,6 +1,7 @@
 package boxordering;
 
 import java.awt.Dialog.ModalityType;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class MainMenu extends javax.swing.JFrame {
@@ -8,6 +9,8 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
     }
+
+    private ArrayList<Box> boxes = new ArrayList<>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,12 +80,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
 
         // declare all the box attributes used for Box initialisation.
-        Box box = null; // may be initialised as a subclass of Box.
+        Box box; // may be initialised as a subclass of Box.
         int cardboardGrade;
         double width, length, height;
         boolean sealable;
         int colourType;
         Object reinforcedCorners;
+        int quantity;
 
         // hide MainMenu form to avoid user confusion
         setVisible(false);
@@ -131,7 +135,7 @@ public class MainMenu extends javax.swing.JFrame {
 
                 //type II box.
                 box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
-                
+
             } else {
                 ReinforcedForm reinforcedForm = new ReinforcedForm();
                 reinforcedForm.setVisible(true);
@@ -142,15 +146,15 @@ public class MainMenu extends javax.swing.JFrame {
                 reinforcedCorners = (Object) reinforcedForm.getInfo();
                 System.out.println(reinforcedCorners);
                 if (reinforcedCorners == null) {
-                    
+
                     // type III box.
                     box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
-                    
+
                 } else {
-                    
+
                     // type IV or V box.
                     box = new ReinforcedBox(width, length, height, cardboardGrade, sealable, colourType, (boolean) reinforcedCorners);
-                    
+
                 }
             }
         } else {
@@ -159,12 +163,31 @@ public class MainMenu extends javax.swing.JFrame {
             box = new BasicBox(width, length, height, cardboardGrade, sealable);
         }
 
-        System.out.println(box);
-        System.out.println(box.getType());
-        System.out.println(box.calculatePrice());
+        // get the amount of these boxes and the clone them, adding the copies to the ArrayList.
+        QuantityForm quantityForm = new QuantityForm();
+        quantityForm.setVisible(true);
+        if (!quantityForm.isValid()) {
+            cancel();
+            return;
+        }
+        quantity = (int) quantityForm.getInfo();
+
+        for (int i = 0; i < quantity; i++) {
+            try {
+                boxes.add((Box) box.clone());
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException("Fatal: box clone failed.");
+            }
+        }
 
         // show main form, updated with the box order they just placed.
         setVisible(true);
+        
+        
+        for (Box test : boxes) {
+            System.out.println(test.calculatePrice());
+        }
+        
     }//GEN-LAST:event_addboxActionPerformed
 
 
