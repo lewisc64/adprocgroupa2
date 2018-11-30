@@ -11,8 +11,8 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
     }
-public int orders = 0;
-
+    
+    private int orders = 0;
     private ArrayList<Box> boxes = new ArrayList<>();
 
     /**
@@ -118,7 +118,7 @@ public int orders = 0;
             totalPrice = totalPrice.add(box.calculatePrice());
         }
         boxCountLabel.setText("Boxes Ordered: " + boxCount);
-        totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2,RoundingMode.HALF_UP).toString());
+        totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2, RoundingMode.HALF_UP).toString());
         ordersLabel.setText("Orders made: " + orders);
     }
 
@@ -230,7 +230,7 @@ public int orders = 0;
         /*        orderPrice = box.calculatePrice();
         totalPrice = totalPrice.add(orderPrice);
         totalCostLabel.setText("Total Price: £" + totalPrice.toString()); */
-       orders = orders + 1;
+        orders = orders + 1;
         update();
 
 

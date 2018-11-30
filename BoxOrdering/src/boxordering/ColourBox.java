@@ -20,7 +20,7 @@ public class ColourBox extends BasicBox {
         }
     }
 
-    protected BigDecimal getCostOfColours() {
+    private BigDecimal getCostOfColours() {
         switch (colourType) {
             case 1:
                 return new BigDecimal(1.12);

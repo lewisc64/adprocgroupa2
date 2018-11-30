@@ -16,7 +16,7 @@ public class BasicBox extends Box {
         this.sealable = sealable;
     }
     
-    protected BigDecimal getCostOfCardboard() {
+    private BigDecimal getCostOfCardboard() {
         switch (cardboardGrade) {
             case 1:
                 return new BigDecimal(0.55);
