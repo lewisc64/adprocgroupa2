@@ -2,6 +2,7 @@ package boxordering;
 
 import java.awt.Dialog.ModalityType;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -10,8 +11,6 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
     }
-    public BigDecimal orderPrice = null;
-    public BigDecimal totalPrice = null;
 
     private ArrayList<Box> boxes = new ArrayList<>();
 
@@ -94,6 +93,14 @@ public class MainMenu extends javax.swing.JFrame {
                 "The 'Add box' operation has been cancelled.",
                 "Cancellation",
                 JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void update() {
+        BigDecimal totalPrice = new BigDecimal(0);
+        for (Box box : boxes) {
+            totalPrice = totalPrice.add(box.calculatePrice());
+        }
+        totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2,RoundingMode.HALF_UP).toString());
     }
 
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
@@ -201,15 +208,12 @@ public class MainMenu extends javax.swing.JFrame {
 
         // show main form, updated with the box order they just placed.
         setVisible(true);
-/*        orderPrice = box.calculatePrice();
+        /*        orderPrice = box.calculatePrice();
         totalPrice = totalPrice.add(orderPrice);
         totalCostLabel.setText("Total Price: £" + totalPrice.toString()); */
+        update();
 
-        for (Box test : boxes) {
-            System.out.println(test.calculatePrice());
-        }
 
-        
     }//GEN-LAST:event_addboxActionPerformed
 
 
