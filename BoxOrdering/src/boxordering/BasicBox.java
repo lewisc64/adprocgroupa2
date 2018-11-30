@@ -32,6 +32,10 @@ public class BasicBox extends Box {
         throw new RuntimeException("Invalid cardboard grade.");
     }
     
+    public int getType() {
+        return 1;
+    }
+    
     public BigDecimal calculatePrice() {
         BigDecimal result = calculateBasePrice().multiply(getPriceMultiplier());
         return result;

@@ -14,7 +14,6 @@ class BasicInfoFormResult {
         this.length = length;
         this.sealable = sealable;
     }
-
 }
 
 public class BasicInfoForm extends Form {
@@ -60,13 +59,13 @@ public class BasicInfoForm extends Form {
             }
         });
 
-        jLabel3.setText("Height");
+        jLabel3.setText("Height (m)");
 
-        jLabel4.setText("Width");
+        jLabel4.setText("Width (m)");
 
         length.setColumns(5);
 
-        jLabel5.setText("Length");
+        jLabel5.setText("Length (m)");
 
         sealable.setText("Sealable?");
 

@@ -11,11 +11,17 @@ public class ColourBox extends BasicBox {
         super(width, length, height, cardboardGrade, sealable);
         this.colourType = colourType;
     }
+    
+    public int getType() {
+        if (colourType == 1) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 
     protected BigDecimal getCostOfColours() {
         switch (colourType) {
-            case 0:
-                return new BigDecimal(1.00);
             case 1:
                 return new BigDecimal(1.12);
             case 2:

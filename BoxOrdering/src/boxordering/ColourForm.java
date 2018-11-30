@@ -81,8 +81,17 @@ public class ColourForm extends Form {
         close();
     }//GEN-LAST:event_nextActionPerformed
 
+    public void removeNoColourOption() {
+        if (colourType.getItemCount() == 3){
+            colourType.removeItemAt(0);
+        }
+    }
+    
     public Object getInfo() {
-        return colourType.getSelectedIndex();
+        if (colourType.getItemCount() == 3){
+            return colourType.getSelectedIndex();
+        }
+        return colourType.getSelectedIndex() + 1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

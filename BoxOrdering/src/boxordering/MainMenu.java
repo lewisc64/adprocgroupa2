@@ -76,12 +76,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
 
-        Box box;
+        // declare all the box attributes used for Box initialisation.
+        Box box = null; // may be initialised as a subclass of Box.
         int cardboardGrade;
         double width, length, height;
         boolean sealable;
         int colourType;
+        Object reinforcedCorners;
 
+        // hide MainMenu form to avoid user confusion
         setVisible(false);
 
         BasicInfoForm infoForm = new BasicInfoForm();
@@ -101,7 +104,6 @@ public class MainMenu extends javax.swing.JFrame {
         if (cardboardGrade == 1) {
             JOptionPane.showMessageDialog(null, "You will have no colours.", "Information", JOptionPane.INFORMATION_MESSAGE);
             colourType = 0;
-            box = new BasicBox(width, length, height, cardboardGrade, sealable);
 
             // with a cardboardGrade of 5, the user must have two colours.
         } else if (cardboardGrade == 5) {
@@ -110,7 +112,11 @@ public class MainMenu extends javax.swing.JFrame {
 
             // any other cardboardGrade, the user can choose what colour they want.
         } else {
+
             ColourForm colourForm = new ColourForm();
+            if (cardboardGrade == 4) {
+                colourForm.removeNoColourOption();
+            }
             colourForm.setVisible(true);
             if (!colourForm.isValid()) {
                 cancel();
@@ -119,20 +125,45 @@ public class MainMenu extends javax.swing.JFrame {
             colourType = (int) colourForm.getInfo();
         }
 
-        if (cardboardGrade <= 3 && colourType == 0) {
+        // if the colourType is not 0, then the box is a coloured box, and might be reinforced.
+        if (colourType != 0) {
+            if (colourType == 1) {
+
+                //type II box.
+                box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
+                
+            } else {
+                ReinforcedForm reinforcedForm = new ReinforcedForm();
+                reinforcedForm.setVisible(true);
+                if (!reinforcedForm.isValid()) {
+                    cancel();
+                    return;
+                }
+                reinforcedCorners = (Object) reinforcedForm.getInfo();
+                System.out.println(reinforcedCorners);
+                if (reinforcedCorners == null) {
+                    
+                    // type III box.
+                    box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
+                    
+                } else {
+                    
+                    // type IV or V box.
+                    box = new ReinforcedBox(width, length, height, cardboardGrade, sealable, colourType, (boolean) reinforcedCorners);
+                    
+                }
+            }
+        } else {
+
+            // type I box.
             box = new BasicBox(width, length, height, cardboardGrade, sealable);
         }
 
-        if (colourType != 0) {
-            if (colourType == 1) {
-                box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
-            } else {
-                
-            }
-        }
-
         System.out.println(box);
+        System.out.println(box.getType());
+        System.out.println(box.calculatePrice());
 
+        // show main form, updated with the box order they just placed.
         setVisible(true);
     }//GEN-LAST:event_addboxActionPerformed
 
