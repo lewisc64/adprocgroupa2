@@ -11,6 +11,7 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
     }
+public int orders = 0;
 
     private ArrayList<Box> boxes = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class MainMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         ordersLabel = new javax.swing.JLabel();
         totalCostLabel = new javax.swing.JLabel();
+        boxCountLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +48,8 @@ public class MainMenu extends javax.swing.JFrame {
 
         totalCostLabel.setText("Total Cost: £0");
 
+        boxCountLabel.setText("Boxes Ordered: 0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,16 +60,20 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(127, 127, 127)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(addbox)))
+                        .addContainerGap()
+                        .addComponent(totalCostLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ordersLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(totalCostLabel)))
+                        .addComponent(ordersLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addComponent(addbox)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(boxCountLabel)))))
                 .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,7 +86,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
                 .addGap(28, 28, 28)
-                .addComponent(ordersLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ordersLabel)
+                    .addComponent(boxCountLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalCostLabel)
                 .addContainerGap(108, Short.MAX_VALUE))
@@ -94,13 +104,18 @@ public class MainMenu extends javax.swing.JFrame {
                 "Cancellation",
                 JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
     private void update() {
+        int boxCount = 0;
         BigDecimal totalPrice = new BigDecimal(0);
         for (Box box : boxes) {
+            boxCount = boxCount + 1;
             totalPrice = totalPrice.add(box.calculatePrice());
         }
+        orders = orders + 1;
+        boxCountLabel.setText("Boxes Ordered: " + boxCount);
         totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2,RoundingMode.HALF_UP).toString());
+        ordersLabel.setText("Orders made: " + orders);
     }
 
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
@@ -219,6 +234,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbox;
+    private javax.swing.JLabel boxCountLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel ordersLabel;
