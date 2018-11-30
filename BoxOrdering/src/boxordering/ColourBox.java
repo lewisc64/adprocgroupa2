@@ -14,6 +14,8 @@ public class ColourBox extends BasicBox {
 
     protected BigDecimal getCostOfColours() {
         switch (colourType) {
+            case 0:
+                return new BigDecimal(1.00);
             case 1:
                 return new BigDecimal(1.12);
             case 2:

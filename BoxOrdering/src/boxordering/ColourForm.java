@@ -23,7 +23,7 @@ public class ColourForm extends Form {
 
         jLabel1.setText("Colour Form");
 
-        colourType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "One colour", "Two colours" }));
+        colourType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No colour", "One colour", "Two colours" }));
         colourType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colourTypeActionPerformed(evt);

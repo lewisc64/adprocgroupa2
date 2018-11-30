@@ -4,7 +4,7 @@ import java.awt.Dialog.ModalityType;
 import javax.swing.JOptionPane;
 
 public class MainMenu extends javax.swing.JFrame {
-    
+
     public MainMenu() {
         initComponents();
     }
@@ -73,29 +73,66 @@ public class MainMenu extends javax.swing.JFrame {
                 "Cancellation",
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
-        
-        Object result;
-        
+
+        Box box;
+        int cardboardGrade;
+        double width, length, height;
+        boolean sealable;
+        int colourType;
+
         setVisible(false);
-        
+
         BasicInfoForm infoForm = new BasicInfoForm();
         infoForm.setVisible(true);
         if (!infoForm.isValid()) {
             cancel();
             return;
         }
-        result = infoForm.getInfo();
-        
-        ColourForm colourForm = new ColourForm();
-        colourForm.setVisible(true);
-        if (!colourForm.isValid()) {
-            cancel();
-            return;
+        BasicInfoFormResult infoResult = (BasicInfoFormResult) infoForm.getInfo();
+        cardboardGrade = infoResult.grade;
+        width = infoResult.width;
+        height = infoResult.height;
+        length = infoResult.length;
+        sealable = infoResult.sealable;
+
+        // with a cardboardGrade of 1, the user cannot have any colour.
+        if (cardboardGrade == 1) {
+            JOptionPane.showMessageDialog(null, "You will have no colours.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            colourType = 0;
+            box = new BasicBox(width, length, height, cardboardGrade, sealable);
+
+            // with a cardboardGrade of 5, the user must have two colours.
+        } else if (cardboardGrade == 5) {
+            JOptionPane.showMessageDialog(null, "You will have two colours.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            colourType = 2;
+
+            // any other cardboardGrade, the user can choose what colour they want.
+        } else {
+            ColourForm colourForm = new ColourForm();
+            colourForm.setVisible(true);
+            if (!colourForm.isValid()) {
+                cancel();
+                return;
+            }
+            colourType = (int) colourForm.getInfo();
         }
-        result = colourForm.getInfo();
-        
+
+        if (cardboardGrade <= 3 && colourType == 0) {
+            box = new BasicBox(width, length, height, cardboardGrade, sealable);
+        }
+
+        if (colourType != 0) {
+            if (colourType == 1) {
+                box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
+            } else {
+                
+            }
+        }
+
+        System.out.println(box);
+
         setVisible(true);
     }//GEN-LAST:event_addboxActionPerformed
 

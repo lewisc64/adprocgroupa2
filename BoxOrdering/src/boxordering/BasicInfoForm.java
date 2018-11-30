@@ -3,13 +3,16 @@ package boxordering;
 
 class BasicInfoFormResult {
     
-    int grade;
-    double width, height, length;
-    boolean sealable;
+    public int grade;
+    public double width, height, length;
+    public boolean sealable;
     
     public BasicInfoFormResult(int grade, double width, double height, double length, boolean sealable) {
         this.grade = grade;
-        //WIP
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.sealable = sealable;
     }
 
 }
@@ -175,7 +178,11 @@ public class BasicInfoForm extends Form {
     }//GEN-LAST:event_widthActionPerformed
 
     public Object getInfo() {
-        return null;
+        return new BasicInfoFormResult(Integer.parseInt((String)cardboardGrade.getSelectedItem()),
+                                       Double.parseDouble(width.getText()),
+                                       Double.parseDouble(height.getText()),
+                                       Double.parseDouble(length.getText()),
+                                       sealable.isSelected());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
