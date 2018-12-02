@@ -207,6 +207,8 @@ public class MainMenu extends javax.swing.JFrame {
             // type I box.
             box = new BasicBox(width, length, height, cardboardGrade, sealable);
         }
+        
+        System.out.println(box.getPriceMultiplier());
 
         // get the amount of these boxes and the clone them, adding the copies to the ArrayList.
         QuantityForm quantityForm = new QuantityForm();

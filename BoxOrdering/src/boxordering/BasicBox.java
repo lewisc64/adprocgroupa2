@@ -48,7 +48,7 @@ public class BasicBox extends Box {
     }
     
     protected BigDecimal getPriceMultiplier() {
-        return new BigDecimal(sealable ? 1.1 : 1);
+        return super.getPriceMultiplier().add(new BigDecimal(sealable ? 0.1 : 0));
     }
     
 }

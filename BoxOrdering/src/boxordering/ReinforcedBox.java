@@ -21,7 +21,7 @@ public class ReinforcedBox extends ColourBox {
     }
     
     protected BigDecimal getPriceMultiplier() {
-        return super.getPriceMultiplier().add(new BigDecimal(corners ? 1.25 : 1.13));
+        return super.getPriceMultiplier().add(new BigDecimal(corners ? 0.25 : 0.13));
     }
     
     

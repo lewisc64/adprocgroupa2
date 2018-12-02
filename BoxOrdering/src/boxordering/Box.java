@@ -10,7 +10,10 @@ public abstract class Box implements Cloneable {
     public abstract int getType();
     public abstract BigDecimal calculatePrice();
     protected abstract BigDecimal calculateBasePrice();
-    protected abstract BigDecimal getPriceMultiplier();
+    
+    protected BigDecimal getPriceMultiplier() {
+        return new BigDecimal(1);
+    }
     
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();

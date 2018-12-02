@@ -23,9 +23,9 @@ public class ColourBox extends BasicBox {
     private BigDecimal getCostOfColours() {
         switch (colourType) {
             case 1:
-                return new BigDecimal(1.12);
+                return new BigDecimal(0.12);
             case 2:
-                return new BigDecimal(1.15);
+                return new BigDecimal(0.15);
         }
         throw new RuntimeException("Invalid colour type.");
     }
