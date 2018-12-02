@@ -33,6 +33,7 @@ public class ReinforcedForm extends Form {
         jLabel1.setText("Reinforced Form");
 
         buttonGroup1.add(notReinforced);
+        notReinforced.setSelected(true);
         notReinforced.setText("Not Reinforced");
         notReinforced.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
