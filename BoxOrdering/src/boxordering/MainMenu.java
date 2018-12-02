@@ -1,17 +1,16 @@
 package boxordering;
 
-import java.awt.Dialog.ModalityType;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MainMenu extends javax.swing.JFrame {
 
     public MainMenu() {
         initComponents();
     }
-    
+
     private int orders = 0;
     private ArrayList<Box> boxes = new ArrayList<>();
 
@@ -24,16 +23,37 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         addbox = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         ordersLabel = new javax.swing.JLabel();
         totalCostLabel = new javax.swing.JLabel();
         boxCountLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableOfBoxes = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        addbox.setText("Add Box");
+        addbox.setText("Add Boxes");
         addbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addboxActionPerformed(evt);
@@ -49,11 +69,20 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        ordersLabel.setText("Orders Made: 0");
+        ordersLabel.setText("0");
 
-        totalCostLabel.setText("Total Cost: £0");
+        totalCostLabel.setText("£0");
 
-        boxCountLabel.setText("Boxes Ordered: 0");
+        boxCountLabel.setText("0");
+
+        jLabel2.setText("Orders Made:");
+
+        jLabel3.setText("Total Cost:");
+
+        jLabel4.setText("Boxes Ordered:");
+
+        tableOfBoxes.setModel(new DefaultTableModel());
+        jScrollPane2.setViewportView(tableOfBoxes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,41 +91,58 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(totalCostLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ordersLabel)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1)
-                                    .addComponent(addbox)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(boxCountLabel)))))
-                .addContainerGap(149, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ordersLabel)
+                                    .addComponent(boxCountLabel)
+                                    .addComponent(totalCostLabel)))
+                            .addComponent(addbox, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addComponent(addbox)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ordersLabel)
-                    .addComponent(boxCountLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalCostLabel)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(boxCountLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(ordersLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(totalCostLabel))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,16 +158,43 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void update() {
         int boxCount = 0;
+        BigDecimal price;
         BigDecimal totalPrice = new BigDecimal(0);
+        DefaultTableModel model = (DefaultTableModel) tableOfBoxes.getModel();
+        
+        if (model.getColumnCount() == 0) {
+            model.addColumn("Type");
+            //model.addColumn("Cardboard Grade");
+            model.addColumn("Dimensions");
+            model.addColumn("Cost");
+        }
+        
+        model.setRowCount(0);
+        
         for (Box box : boxes) {
             boxCount = boxCount + 1;
-            totalPrice = totalPrice.add(box.calculatePrice());
+            price = box.calculatePrice();
+            totalPrice = totalPrice.add(price);
+            
+            model.addRow(new Object[] {
+                box.getType(),
+                box.getDimensions(),
+                "£" + price.toString()
+            });
+            
         }
-        boxCountLabel.setText("Boxes Ordered: " + boxCount);
-        totalCostLabel.setText("Total Price: £" + totalPrice.setScale(2, RoundingMode.HALF_UP).toString());
-        ordersLabel.setText("Orders made: " + orders);
+        boxCountLabel.setText(Integer.toString(boxCount));
+        totalCostLabel.setText("£" + totalPrice.toString());
+        ordersLabel.setText(Integer.toString(orders));
     }
 
+    /**
+     * This function will open other forms determining the flow of how the user
+     * orders boxes. It will flow in such a way that the user cannot input a box
+     * that is unable to be supplied by Flexbox.
+     *
+     * @param evt
+     */
     private void addboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addboxActionPerformed
 
         // declare all the box attributes used for Box initialisation.
@@ -163,6 +236,8 @@ public class MainMenu extends javax.swing.JFrame {
         } else {
 
             ColourForm colourForm = new ColourForm();
+
+            // the user must have one colour or two colours with a cardboardGrade of 4.
             if (cardboardGrade == 4) {
                 colourForm.removeNoColourOption();
             }
@@ -176,9 +251,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         // if the colourType is not 0, then the box is a coloured box, and might be reinforced.
         if (colourType != 0) {
+            
+            // if the colourType is 1, then the box cannot have any reinforcement.
             if (colourType == 1) {
-
-                //type II box.
+                
                 box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
 
             } else {
@@ -189,28 +265,23 @@ public class MainMenu extends javax.swing.JFrame {
                     return;
                 }
                 reinforcedCorners = (Object) reinforcedForm.getInfo();
-                System.out.println(reinforcedCorners);
+                
                 if (reinforcedCorners == null) {
-
-                    // type III box.
+                    
                     box = new ColourBox(width, length, height, cardboardGrade, sealable, colourType);
 
                 } else {
-
-                    // type IV or V box.
+                    
                     box = new ReinforcedBox(width, length, height, cardboardGrade, sealable, colourType, (boolean) reinforcedCorners);
 
                 }
             }
         } else {
-
-            // type I box.
+            
             box = new BasicBox(width, length, height, cardboardGrade, sealable);
         }
-        
-        System.out.println(box.getPriceMultiplier());
 
-        // get the amount of these boxes and the clone them, adding the copies to the ArrayList.
+        // get the amount of these boxes and clones them, adding the copies to the ArrayList.
         QuantityForm quantityForm = new QuantityForm();
         quantityForm.setVisible(true);
         if (!quantityForm.isValid()) {
@@ -218,6 +289,12 @@ public class MainMenu extends javax.swing.JFrame {
             return;
         }
         quantity = (int) quantityForm.getInfo();
+
+        JOptionPane.showMessageDialog(null, "You have ordered " + quantity
+                + " of box type " + box.getType()
+                + ", costing £" + box.calculatePrice().multiply(new BigDecimal(quantity)).toString(),
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE);
 
         for (int i = 0; i < quantity; i++) {
             try {
@@ -229,10 +306,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         // show main form, updated with the box order they just placed.
         setVisible(true);
-        /*        orderPrice = box.calculatePrice();
-        totalPrice = totalPrice.add(orderPrice);
-        totalCostLabel.setText("Total Price: £" + totalPrice.toString()); */
-        orders = orders + 1;
+        orders++;
         update();
 
 
@@ -251,7 +325,14 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel boxCountLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel ordersLabel;
+    private javax.swing.JTable tableOfBoxes;
     private javax.swing.JLabel totalCostLabel;
     // End of variables declaration//GEN-END:variables
 }

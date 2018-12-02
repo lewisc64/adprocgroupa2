@@ -2,6 +2,7 @@
 package boxordering;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class BasicBox extends Box {
     
@@ -16,6 +17,10 @@ public class BasicBox extends Box {
         this.sealable = sealable;
     }
     
+    /**
+     * Will return the cost of the cardboard of the grade given to the box.
+     * @return Cost per m^2
+     */
     private BigDecimal getCostOfCardboard() {
         switch (cardboardGrade) {
             case 1:
@@ -38,7 +43,7 @@ public class BasicBox extends Box {
     
     public BigDecimal calculatePrice() {
         BigDecimal result = calculateBasePrice().multiply(getPriceMultiplier());
-        return result;
+        return result.setScale(2, RoundingMode.HALF_UP);
     }
         
     protected BigDecimal calculateBasePrice() {

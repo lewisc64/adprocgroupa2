@@ -1,4 +1,3 @@
-
 package boxordering;
 
 public class QuantityForm extends Form {
@@ -76,7 +75,7 @@ public class QuantityForm extends Form {
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
         double quantity = 0;
-        
+
         try {
             quantity = Double.parseDouble(quantityInputBox.getText());
         } catch (NumberFormatException e) {
@@ -90,8 +89,10 @@ public class QuantityForm extends Form {
         if (quantity <= 0) {
             showWarning("You must order one or more boxes.");
             return;
+        } else if (quantity > 100) {
+            showWarning("You cannot request more than 100 boxes in the same order.");
+            return;
         }
-        
         valid = true;
         close();
     }//GEN-LAST:event_finishButtonActionPerformed

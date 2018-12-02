@@ -1,12 +1,11 @@
-
 package boxordering;
 
 class BasicInfoFormResult {
-    
+
     public int grade;
     public double width, height, length;
     public boolean sealable;
-    
+
     public BasicInfoFormResult(int grade, double width, double height, double length, boolean sealable) {
         this.grade = grade;
         this.width = width;
@@ -160,12 +159,15 @@ public class BasicInfoForm extends Form {
             sideWidth = Double.parseDouble(width.getText());
             sideLength = Double.parseDouble(length.getText());
             sideHeight = Double.parseDouble(height.getText());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             showWarning("Sides must be a valid number.");
             return;
         }
-        if (sideWidth <= 0 || sideHeight <= 0 || sideLength <= 0) {
-            showWarning("Sides must be non-zero and positive.");
+        if (sideWidth < 0.01 || sideHeight < 0.01 || sideLength < 0.01) {
+            showWarning("Sides cannot be smaller than 1cm.");
+            return;
+        } else if (sideWidth > 5 || sideHeight > 5 || sideLength > 5) {
+            showWarning("Sides cannot be larger than 5m.");
             return;
         }
         valid = true;
@@ -177,11 +179,11 @@ public class BasicInfoForm extends Form {
     }//GEN-LAST:event_widthActionPerformed
 
     public Object getInfo() {
-        return new BasicInfoFormResult(Integer.parseInt((String)cardboardGrade.getSelectedItem()),
-                                       Double.parseDouble(width.getText()),
-                                       Double.parseDouble(height.getText()),
-                                       Double.parseDouble(length.getText()),
-                                       sealable.isSelected());
+        return new BasicInfoFormResult(Integer.parseInt((String) cardboardGrade.getSelectedItem()),
+                Double.parseDouble(width.getText()),
+                Double.parseDouble(height.getText()),
+                Double.parseDouble(length.getText()),
+                sealable.isSelected());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
